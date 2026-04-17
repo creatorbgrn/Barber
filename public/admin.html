@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Dashboard | Crewe Cut Barber</title>
+    <title>Admin Login | Crewe Cut Barber</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,65 +13,171 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body class="admin-body">
-    <div class="admin-shell">
-      <aside class="admin-sidebar">
+    <section class="admin-login-wrap" id="admin-auth-panel">
+      <div class="admin-login-card">
         <p class="eyebrow">Admin</p>
-        <h1>Crewe Cut Barber</h1>
-        <p class="section-copy">
-          Sign in to review booking requests, contact clients, and keep the day organised.
-        </p>
-        <div class="backend-points admin-notes">
-          <div><strong>Access</strong><span>Use the shop admin login created in Supabase.</span></div>
-          <div><strong>Bookings</strong><span>Update each request as new, contacted, confirmed, or completed.</span></div>
+        <h1>Admin Login</h1>
+        <div class="form-message" id="admin-feedback" hidden></div>
+        <form class="booking-form admin-login-form" id="admin-login-form">
+          <label>
+            ID / Email
+            <input type="text" name="email" autocomplete="username" required>
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" autocomplete="current-password" required>
+          </label>
+          <button class="button button-primary button-full" id="admin-login-button" type="submit">Log in</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="admin-app" id="admin-app" hidden>
+      <header class="admin-topbar">
+        <div class="admin-topbar-brand">
+          <strong>Crewe Cut Barber</strong>
+          <span>Admin Panel</span>
         </div>
-        <button class="button button-secondary button-full" id="logout-button" type="button" hidden>Log out</button>
-      </aside>
+        <div class="admin-topbar-actions">
+          <nav class="admin-nav" aria-label="Admin sections">
+            <button class="admin-nav-button is-active" type="button" data-admin-target="overview">Overview</button>
+            <button class="admin-nav-button" type="button" data-admin-target="requests">Requests</button>
+            <button class="admin-nav-button" type="button" data-admin-target="clients">Clients</button>
+            <button class="admin-nav-button" type="button" data-admin-target="shop">Shop</button>
+          </nav>
+          <button class="button button-secondary" id="logout-button" type="button">Log out</button>
+        </div>
+      </header>
 
-      <main class="admin-main">
-        <section class="admin-panel" id="admin-auth-panel">
-          <div class="section-head">
-            <p class="eyebrow">Admin access</p>
-            <h2>Booking dashboard</h2>
+      <main class="admin-layout">
+        <aside class="admin-sidebar">
+          <div class="admin-sidebar-card">
+            <p class="eyebrow">Navigation</p>
+            <div class="admin-side-links">
+              <button class="admin-side-link is-active" type="button" data-admin-target="overview">Overview</button>
+              <button class="admin-side-link" type="button" data-admin-target="requests">Requests</button>
+              <button class="admin-side-link" type="button" data-admin-target="clients">Clients</button>
+              <button class="admin-side-link" type="button" data-admin-target="shop">Shop</button>
+            </div>
           </div>
-          <p class="section-copy">Use the email and password for the shop admin account.</p>
-          <div class="form-message" id="admin-feedback" hidden></div>
-          <form class="booking-form" id="admin-login-form">
-            <label>
-              Email
-              <input type="email" name="email" autocomplete="username" required>
-            </label>
-            <label>
-              Password
-              <input type="password" name="password" autocomplete="current-password" required>
-            </label>
-            <button class="button button-primary button-full" id="admin-login-button" type="submit">Log in</button>
-          </form>
-        </section>
-
-        <section class="admin-meta-grid" id="admin-stats" hidden></section>
-
-        <section class="admin-panel" id="admin-dashboard" hidden>
-          <div class="section-head">
-            <p class="eyebrow">Bookings</p>
-            <h2>Incoming requests</h2>
+          <div class="admin-sidebar-card">
+            <p class="eyebrow">Shop</p>
+            <div class="admin-sidebar-list">
+              <div><strong>Phone</strong><span>0131 629 4160</span></div>
+              <div><strong>Address</strong><span>218 Boswall Parkway, Edinburgh</span></div>
+              <div><strong>Hours</strong><span>Mon-Sat 9AM-7PM, Sun 10AM-6PM</span></div>
+            </div>
           </div>
+        </aside>
+
+        <section class="admin-content">
           <div class="form-message" id="admin-dashboard-feedback" hidden></div>
-          <div class="mobile-bookings" id="mobile-bookings"></div>
-          <div class="table-wrap">
-            <table class="bookings-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Service</th>
-                  <th>Slot</th>
-                  <th>Contact</th>
-                  <th>Notes</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="bookings-table-body"></tbody>
-            </table>
-          </div>
+
+          <section class="admin-section is-active" id="admin-section-overview" data-admin-section="overview">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Overview</p>
+                <h2>Today at a glance</h2>
+              </div>
+            </div>
+            <div class="admin-meta-grid" id="admin-stats"></div>
+            <div class="admin-columns">
+              <div class="admin-panel">
+                <div class="admin-panel-head">
+                  <h3>Latest requests</h3>
+                </div>
+                <div class="admin-list" id="latest-bookings"></div>
+              </div>
+              <div class="admin-panel">
+                <div class="admin-panel-head">
+                  <h3>Today</h3>
+                </div>
+                <div class="admin-list" id="today-bookings"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-section" id="admin-section-requests" data-admin-section="requests">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Requests</p>
+                <h2>Booking requests</h2>
+              </div>
+            </div>
+            <div class="mobile-bookings" id="mobile-bookings"></div>
+            <div class="table-wrap">
+              <table class="bookings-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Service</th>
+                    <th>Slot</th>
+                    <th>Contact</th>
+                    <th>Notes</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-table-body"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="admin-section" id="admin-section-clients" data-admin-section="clients">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Clients</p>
+                <h2>Client contacts</h2>
+              </div>
+            </div>
+            <div class="admin-panel">
+              <div class="admin-list" id="clients-list"></div>
+            </div>
+          </section>
+
+          <section class="admin-section" id="admin-section-shop" data-admin-section="shop">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Shop</p>
+                <h2>Key details</h2>
+              </div>
+            </div>
+            <div class="admin-columns">
+              <div class="admin-panel">
+                <div class="admin-panel-head">
+                  <h3>Contact</h3>
+                </div>
+                <div class="admin-list admin-list-static">
+                  <div class="admin-list-item">
+                    <strong>Phone</strong>
+                    <span><a href="tel:01316294160">0131 629 4160</a></span>
+                  </div>
+                  <div class="admin-list-item">
+                    <strong>Address</strong>
+                    <span>218 Boswall Parkway, Edinburgh, EH5 2LX</span>
+                  </div>
+                </div>
+              </div>
+              <div class="admin-panel">
+                <div class="admin-panel-head">
+                  <h3>Opening hours</h3>
+                </div>
+                <div class="admin-list admin-list-static">
+                  <div class="admin-list-item">
+                    <strong>Monday to Saturday</strong>
+                    <span>9:00AM - 7:00PM</span>
+                  </div>
+                  <div class="admin-list-item">
+                    <strong>Sunday</strong>
+                    <span>10:00AM - 6:00PM</span>
+                  </div>
+                  <div class="admin-list-item">
+                    <strong>Walk-ins</strong>
+                    <span>Welcome every day</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </section>
       </main>
     </div>
