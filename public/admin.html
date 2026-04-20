@@ -42,6 +42,9 @@
             <button class="admin-nav-button is-active" type="button" data-admin-target="overview">Overview</button>
             <button class="admin-nav-button" type="button" data-admin-target="requests">Requests</button>
             <button class="admin-nav-button" type="button" data-admin-target="clients">Clients</button>
+            <button class="admin-nav-button" type="button" data-admin-target="services">Services</button>
+            <button class="admin-nav-button" type="button" data-admin-target="photos">Photos</button>
+            <button class="admin-nav-button" type="button" data-admin-target="availability">Availability</button>
             <button class="admin-nav-button" type="button" data-admin-target="shop">Shop</button>
           </nav>
           <button class="button button-secondary" id="logout-button" type="button">Log out</button>
@@ -110,6 +113,80 @@
             </div>
             <div class="admin-panel">
               <div class="admin-list" id="clients-list"></div>
+            </div>
+          </section>
+
+          <section class="admin-section" id="admin-section-services" data-admin-section="services">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Services</p>
+                <h2>Services and prices</h2>
+              </div>
+              <button class="button button-secondary" id="add-service-button" type="button">Add service</button>
+            </div>
+            <div class="admin-panel">
+              <div class="settings-list" id="services-settings-list"></div>
+            </div>
+          </section>
+
+          <section class="admin-section" id="admin-section-photos" data-admin-section="photos">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Photos</p>
+                <h2>Website gallery</h2>
+              </div>
+              <button class="button button-secondary" id="add-photo-button" type="button">Add photo</button>
+            </div>
+            <div class="admin-panel">
+              <p class="admin-help-text">Use image URLs or upload files to Supabase Storage. Maximum 15 photos, 5MB each.</p>
+              <div class="settings-list" id="gallery-settings-list"></div>
+            </div>
+          </section>
+
+          <section class="admin-section" id="admin-section-availability" data-admin-section="availability">
+            <div class="admin-section-head">
+              <div>
+                <p class="eyebrow">Availability</p>
+                <h2>Booking rules</h2>
+              </div>
+              <button class="button button-primary" id="save-settings-button" type="button">Save settings</button>
+            </div>
+            <div class="admin-columns">
+              <div class="admin-panel">
+                <div class="admin-panel-head">
+                  <h3>Capacity</h3>
+                </div>
+                <div class="settings-grid">
+                  <label>
+                    Max clients per time
+                    <input type="number" min="1" max="10" id="max-bookings-input">
+                  </label>
+                  <label>
+                    Time interval
+                    <select id="slot-interval-input">
+                      <option value="15">15 minutes</option>
+                      <option value="30">30 minutes</option>
+                      <option value="45">45 minutes</option>
+                      <option value="60">60 minutes</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+              <div class="admin-panel">
+                <div class="admin-panel-head">
+                  <h3>Closed dates and times</h3>
+                </div>
+                <div class="settings-grid">
+                  <label>
+                    Unavailable dates
+                    <textarea id="unavailable-dates-input" rows="5" placeholder="2026-05-01&#10;2026-05-02"></textarea>
+                  </label>
+                  <label>
+                    Unavailable slots
+                    <textarea id="unavailable-slots-input" rows="5" placeholder="2026-05-01 10:30&#10;2026-05-02 14:00"></textarea>
+                  </label>
+                </div>
+              </div>
             </div>
           </section>
 
