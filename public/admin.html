@@ -10,12 +10,11 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260420-client-ready">
   </head>
   <body class="admin-body">
     <section class="admin-login-wrap" id="admin-auth-panel">
       <div class="admin-login-card">
-        <p class="eyebrow">Admin</p>
         <h1>Admin Login</h1>
         <div class="form-message" id="admin-feedback" hidden></div>
         <form class="booking-form admin-login-form" id="admin-login-form">
@@ -50,26 +49,6 @@
       </header>
 
       <main class="admin-layout">
-        <aside class="admin-sidebar">
-          <div class="admin-sidebar-card">
-            <p class="eyebrow">Navigation</p>
-            <div class="admin-side-links">
-              <button class="admin-side-link is-active" type="button" data-admin-target="overview">Overview</button>
-              <button class="admin-side-link" type="button" data-admin-target="requests">Requests</button>
-              <button class="admin-side-link" type="button" data-admin-target="clients">Clients</button>
-              <button class="admin-side-link" type="button" data-admin-target="shop">Shop</button>
-            </div>
-          </div>
-          <div class="admin-sidebar-card">
-            <p class="eyebrow">Shop</p>
-            <div class="admin-sidebar-list">
-              <div><strong>Phone</strong><span>0131 629 4160</span></div>
-              <div><strong>Address</strong><span>218 Boswall Parkway, Edinburgh</span></div>
-              <div><strong>Hours</strong><span>Mon-Sat 9AM-7PM, Sun 10AM-6PM</span></div>
-            </div>
-          </div>
-        </aside>
-
         <section class="admin-content">
           <div class="form-message" id="admin-dashboard-feedback" hidden></div>
 
@@ -184,6 +163,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js"></script>
-    <script src="admin.js"></script>
+    <script src="admin.js?v=20260420-client-ready"></script>
   </body>
 </html>
