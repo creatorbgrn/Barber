@@ -991,54 +991,151 @@ h3 {
     width: min(100% - 1rem, 1140px);
   }
 
+  .topbar {
+    display: none;
+  }
+
   .topbar-inner,
   .nav-row,
   .footer-row {
     align-items: flex-start;
     flex-direction: column;
-    padding: 0.75rem 0;
+    padding: 0.7rem 0;
   }
 
-  .nav-links,
-  .admin-nav {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .site-header {
+    background: rgba(11, 13, 15, 0.94);
+  }
+
+  .nav-row {
+    min-height: auto;
+    gap: 0.65rem;
+  }
+
+  .brand-main {
+    font-size: 1.52rem;
+    line-height: 1;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.45rem;
     width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scrollbar-width: none;
   }
 
-  .nav-links a,
-  .admin-nav-button {
+  .nav-links::-webkit-scrollbar,
+  .admin-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
     display: inline-flex;
     justify-content: center;
-    padding: 0.75rem;
+    flex: 0 0 auto;
+    min-width: 92px;
+    padding: 0.62rem 0.82rem;
     border: 1px solid var(--line);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.04);
+    font-size: 0.9rem;
+    font-weight: 800;
   }
 
   .hero,
   .services,
   .gallery,
   .booking {
-    padding: 1.75rem 0;
+    padding: 1.35rem 0;
+  }
+
+  .hero {
+    padding-top: 1rem;
+  }
+
+  .hero .eyebrow {
+    display: none;
   }
 
   h1 {
-    font-size: clamp(2.75rem, 13vw, 4rem);
+    max-width: 10ch;
+    margin-bottom: 0.75rem;
+    font-size: clamp(2.45rem, 12vw, 3.45rem);
   }
 
   h2 {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.85rem, 9vw, 2.65rem);
+  }
+
+  .lead,
+  .section-copy {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .pill-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0.95rem 0;
+  }
+
+  .info-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0.52rem 0.58rem;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.55rem;
+    margin: 1rem 0;
+  }
+
+  .button {
+    min-height: 46px;
+    padding: 0.78rem 0.95rem;
+  }
+
+  .hero .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .hero .stat-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0.9rem;
   }
 
   .hero-visual img {
-    min-height: 340px;
+    min-height: 280px;
+    max-height: 330px;
+    border-radius: 22px;
   }
 
   .floating-card {
     position: static;
     max-width: none;
     margin-top: 0.75rem;
+  }
+
+  .floating-bottom {
+    display: none;
   }
 
   .services-grid,
@@ -1052,7 +1149,7 @@ h3 {
   }
 
   .gallery-grid {
-    grid-auto-rows: 220px;
+    grid-auto-rows: 210px;
   }
 
   .gallery-card-1 {
@@ -1061,7 +1158,74 @@ h3 {
 
   .admin-layout,
   .admin-login-wrap {
-    padding: 1rem;
+    padding: 0.75rem;
+  }
+
+  .admin-login-card {
+    padding: 1.15rem;
+    border-radius: 22px;
+  }
+
+  .admin-login-card h1 {
+    font-size: 1.35rem;
+  }
+
+  .admin-topbar {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .admin-topbar-brand strong {
+    font-size: 0.98rem;
+  }
+
+  .admin-topbar-brand span {
+    font-size: 0.74rem;
+  }
+
+  .admin-topbar-actions {
+    width: 100%;
+    gap: 0.65rem;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .admin-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.45rem;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.15rem;
+    scrollbar-width: none;
+  }
+
+  .admin-nav-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0.58rem 0.78rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.82rem;
+  }
+
+  .admin-view-site,
+  #logout-button {
+    width: calc(50% - 0.35rem);
+    min-height: 42px;
+    font-size: 0.86rem;
+  }
+
+  .admin-layout {
+    padding-top: 0.75rem;
+  }
+
+  .admin-content {
+    gap: 0.75rem;
   }
 
   .admin-section-head,
@@ -1074,11 +1238,55 @@ h3 {
 
   .admin-section-actions {
     width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .admin-section-actions .button,
-  .admin-view-site {
+  .admin-section-actions .button {
     width: 100%;
+  }
+
+  .admin-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .admin-panel,
+  .settings-row,
+  .mobile-booking-card,
+  .mobile-booking-empty {
+    border-radius: 16px;
+  }
+
+  .admin-panel,
+  .settings-row,
+  .mobile-booking-card {
+    padding: 0.85rem;
+  }
+
+  .admin-toolbar {
+    padding: 0.85rem;
+  }
+
+  .booking-form input,
+  .booking-form select,
+  .booking-form textarea,
+  .admin-toolbar input,
+  .admin-toolbar select,
+  .status-form select,
+  .settings-grid input,
+  .settings-grid select,
+  .settings-grid textarea {
+    padding: 0.78rem 0.82rem;
+    font-size: 16px;
+  }
+
+  .settings-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .settings-photo-row img {
+    max-height: 220px;
   }
 
   .admin-list-side {
