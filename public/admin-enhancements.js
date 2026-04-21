@@ -105,6 +105,8 @@
 
   function ensureAnalyticsSection() {
     if (document.getElementById("admin-section-analytics")) {
+      document.getElementById("refresh-analytics-button")?.addEventListener("click", loadAnalytics);
+      document.getElementById("sales-service-filter")?.addEventListener("change", renderSales);
       return;
     }
 
