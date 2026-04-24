@@ -9,7 +9,7 @@ window.CREWE_CUT_CONFIG = {
     return;
   }
 
-  const version = "202604241625-dark-icon-mobile";
+  const version = "202604241915-premium-layout-finish";
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
   stylesheet.href = `admin-enhancements.css?v=${version}`;

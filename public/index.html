@@ -11,10 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=202604241625-dark-icon-mobile">
+    <link rel="stylesheet" href="styles.css?v=202604241915-premium-layout-finish">
   </head>
   <body>
     <div class="topbar">
@@ -46,9 +46,9 @@
     </header>
 
     <main>
-      <section class="hero reveal">
-        <div class="container hero-grid" data-hero-parallax>
-          <div class="hero-copy">
+      <section class="hero fade-in">
+        <div class="container hero-grid">
+          <div class="hero-copy fade-in">
             <p class="eyebrow">Boswall Parkway, Edinburgh</p>
             <h1>Sharp cuts, clean fades, and proper barbering all week.</h1>
             <p class="lead">
@@ -84,115 +84,173 @@
             </div>
           </div>
 
-          <div class="hero-visual">
-            <img src="images/storefront.jpg" alt="Crewe Cut Barber storefront" onerror="this.onerror=null;this.src='images/interior-wide.jpg'">
-            <div class="floating-card floating-top">
-              <span>Walk-ins</span>
-              <strong>Same-day cuts welcome</strong>
+          <aside class="quick-info-card fade-in">
+            <p class="eyebrow">Quick Info</p>
+            <h2>Visit the shop</h2>
+            <div class="quick-info-list">
+              <div class="quick-info-item">
+                <span class="quick-info-label">Address</span>
+                <strong>218 Boswall Parkway</strong>
+                <p>Edinburgh, EH5 2LX</p>
+              </div>
+              <div class="quick-info-item">
+                <span class="quick-info-label">Hours</span>
+                <strong>Monday to Saturday</strong>
+                <p>9:00AM - 7:00PM</p>
+              </div>
+              <div class="quick-info-item">
+                <span class="quick-info-label">Sunday</span>
+                <strong>10:00AM - 6:00PM</strong>
+                <p>Walk-ins welcome every day.</p>
+              </div>
+              <div class="quick-info-item">
+                <span class="quick-info-label">Phone</span>
+                <a href="tel:01316294160">0131 629 4160</a>
+              </div>
             </div>
-            <div class="floating-card floating-bottom">
-              <span>Address</span>
-              <strong>218 Boswall Parkway</strong>
-              <em>Edinburgh, EH5 2LX</em>
-            </div>
-          </div>
+          </aside>
         </div>
       </section>
 
-      <section id="services" class="services reveal">
+      <section id="services" class="services fade-in">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Services</p>
             <h2>Haircuts, fades, beard work, shaves, and quick grooming.</h2>
           </div>
           <div class="services-grid" id="services-grid">
-            <article class="service-card reveal featured">
-              <div class="service-meta"><span>35 min</span><strong>£15</strong></div>
-              <h3>Haircut</h3>
+            <article class="service-card fade-in featured">
+              <div class="service-card-head">
+                <h3>Haircut</h3>
+                <strong class="service-price">£15</strong>
+              </div>
+              <div class="service-meta"><span>35 min</span></div>
               <p>Standard haircut with a tidy finish.</p>
             </article>
-            <article class="service-card reveal featured">
-              <div class="service-meta"><span>40 min</span><strong>£17</strong></div>
-              <h3>Skin or Zero Fade</h3>
+            <article class="service-card fade-in featured">
+              <div class="service-card-head">
+                <h3>Skin or Zero Fade</h3>
+                <strong class="service-price">£17</strong>
+              </div>
+              <div class="service-meta"><span>40 min</span></div>
               <p>Sharp fade with clean detailing.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>35 min</span><strong>£16</strong></div>
-              <h3>Scissor Cut</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Scissor Cut</h3>
+                <strong class="service-price">£16</strong>
+              </div>
+              <div class="service-meta"><span>35 min</span></div>
               <p>Scissor work for shape, length, and texture.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>30 min</span><strong>£13</strong></div>
-              <h3>Kids Haircut (Under 12)</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Kids Haircut (Under 12)</h3>
+                <strong class="service-price">£13</strong>
+              </div>
+              <div class="service-meta"><span>30 min</span></div>
               <p>Simple haircut for younger clients.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>35 min</span><strong>£16</strong></div>
-              <h3>Kids Skin or Zero Fade</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Kids Skin or Zero Fade</h3>
+                <strong class="service-price">£16</strong>
+              </div>
+              <div class="service-meta"><span>35 min</span></div>
               <p>Fade service for under 12s.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>20 min</span><strong>£12</strong></div>
-              <h3>All Over</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>All Over</h3>
+                <strong class="service-price">£12</strong>
+              </div>
+              <div class="service-meta"><span>20 min</span></div>
               <p>Single-length clipper cut.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>30 min</span><strong>£17</strong></div>
-              <h3>Hot Towel Shave</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Hot Towel Shave</h3>
+                <strong class="service-price">£17</strong>
+              </div>
+              <div class="service-meta"><span>30 min</span></div>
               <p>Classic shave with hot towel finish.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>30 min</span><strong>£17</strong></div>
-              <h3>Hot Towel Head Shave</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Hot Towel Head Shave</h3>
+                <strong class="service-price">£17</strong>
+              </div>
+              <div class="service-meta"><span>30 min</span></div>
               <p>Close head shave with hot towel.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>20 min</span><strong>£13</strong></div>
-              <h3>Beard Trim and Shape Up</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Beard Trim and Shape Up</h3>
+                <strong class="service-price">£13</strong>
+              </div>
+              <div class="service-meta"><span>20 min</span></div>
               <p>Trim, tidy, and shape the beard line.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>15 min</span><strong>£8</strong></div>
-              <h3>Beard Trim</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Beard Trim</h3>
+                <strong class="service-price">£8</strong>
+              </div>
+              <div class="service-meta"><span>15 min</span></div>
               <p>Quick beard trim and tidy-up.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>15 min</span><strong>£8</strong></div>
-              <h3>Shape Up</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Shape Up</h3>
+                <strong class="service-price">£8</strong>
+              </div>
+              <div class="service-meta"><span>15 min</span></div>
               <p>Freshen up the hairline and edges.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>15 min</span><strong>£8</strong></div>
-              <h3>Threading</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Threading</h3>
+                <strong class="service-price">£8</strong>
+              </div>
+              <div class="service-meta"><span>15 min</span></div>
               <p>Quick tidy-up for extra detail.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>30 min</span><strong>£13</strong></div>
-              <h3>Old Age Pensioner (67+)</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Old Age Pensioner (67+)</h3>
+                <strong class="service-price">£13</strong>
+              </div>
+              <div class="service-meta"><span>30 min</span></div>
               <p>Reduced-price haircut for over 67s.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>10 min</span><strong>£5</strong></div>
-              <h3>Double Zero</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Double Zero</h3>
+                <strong class="service-price">£5</strong>
+              </div>
+              <div class="service-meta"><span>10 min</span></div>
               <p>Very short clipper cut.</p>
             </article>
-            <article class="service-card reveal">
-              <div class="service-meta"><span>10 min</span><strong>£7</strong></div>
-              <h3>Nose Wax and Ear Wax</h3>
+            <article class="service-card fade-in">
+              <div class="service-card-head">
+                <h3>Nose Wax and Ear Wax</h3>
+                <strong class="service-price">£7</strong>
+              </div>
+              <div class="service-meta"><span>10 min</span></div>
               <p>Quick grooming add-on.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="gallery" class="gallery reveal">
+      <section id="gallery" class="gallery fade-in">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Gallery</p>
             <h2>Inside the shop and work from the chair.</h2>
           </div>
           <div class="gallery-grid" id="gallery-grid">
-            <article class="gallery-card reveal gallery-card-1">
+            <article class="gallery-card fade-in gallery-card-1">
               <button class="gallery-button" type="button" data-gallery-src="images/storefront.jpg" data-gallery-title="Shop front" data-gallery-text="Crewe Cut Barber on Boswall Parkway.">
                 <img src="images/storefront.jpg" alt="Shop front" loading="lazy" onerror="this.onerror=null;this.src='images/interior-wide.jpg'">
               </button>
@@ -201,7 +259,7 @@
                 <p>Boswall Parkway, Edinburgh.</p>
               </div>
             </article>
-            <article class="gallery-card reveal gallery-card-2">
+            <article class="gallery-card fade-in gallery-card-2">
               <button class="gallery-button" type="button" data-gallery-src="images/interior-wide.jpg" data-gallery-title="Main stations" data-gallery-text="Main cutting stations inside the shop.">
                 <img src="images/interior-wide.jpg" alt="Main stations" loading="lazy" onerror="this.onerror=null;this.src='images/interior-row.jpg'">
               </button>
@@ -210,7 +268,7 @@
                 <p>Clean working setup.</p>
               </div>
             </article>
-            <article class="gallery-card reveal gallery-card-3">
+            <article class="gallery-card fade-in gallery-card-3">
               <button class="gallery-button" type="button" data-gallery-src="images/interior-row.jpg" data-gallery-title="Interior" data-gallery-text="Ready for the day.">
                 <img src="images/interior-row.jpg" alt="Interior" loading="lazy" onerror="this.onerror=null;this.src='images/interior-wide.jpg'">
               </button>
@@ -219,7 +277,7 @@
                 <p>Shop floor and chairs.</p>
               </div>
             </article>
-            <article class="gallery-card reveal gallery-card-4">
+            <article class="gallery-card fade-in gallery-card-4">
               <button class="gallery-button" type="button" data-gallery-src="images/chairs.jpg" data-gallery-title="Chairs" data-gallery-text="Classic barber chairs and mirror line.">
                 <img src="images/chairs.jpg" alt="Chairs" loading="lazy" onerror="this.onerror=null;this.src='images/interior-row.jpg'">
               </button>
@@ -228,7 +286,7 @@
                 <p>Classic barber setup.</p>
               </div>
             </article>
-            <article class="gallery-card reveal gallery-card-5">
+            <article class="gallery-card fade-in gallery-card-5">
               <button class="gallery-button" type="button" data-gallery-src="images/cut-detail.jpg" data-gallery-title="Finished cut" data-gallery-text="Fresh cut in the chair.">
                 <img src="images/cut-detail.jpg" alt="Finished cut" loading="lazy" onerror="this.onerror=null;this.src='images/fade-finish.jpg'">
               </button>
@@ -237,7 +295,7 @@
                 <p>Fresh finish.</p>
               </div>
             </article>
-            <article class="gallery-card reveal gallery-card-6">
+            <article class="gallery-card fade-in gallery-card-6">
               <button class="gallery-button" type="button" data-gallery-src="images/fade-finish.jpg" data-gallery-title="Fade detail" data-gallery-text="Clean blend and finish.">
                 <img src="images/fade-finish.jpg" alt="Fade detail" loading="lazy" onerror="this.onerror=null;this.src='images/cut-detail.jpg'">
               </button>
@@ -246,7 +304,7 @@
                 <p>Clean blend.</p>
               </div>
             </article>
-            <article class="gallery-card reveal gallery-card-7">
+            <article class="gallery-card fade-in gallery-card-7">
               <button class="gallery-button" type="button" data-gallery-src="images/client-chair.jpg" data-gallery-title="In the chair" data-gallery-text="Service in progress.">
                 <img src="images/client-chair.jpg" alt="In the chair" loading="lazy" onerror="this.onerror=null;this.src='images/chairs.jpg'">
               </button>
@@ -259,9 +317,9 @@
         </div>
       </section>
 
-      <section id="booking" class="booking reveal">
+      <section id="booking" class="booking fade-in">
         <div class="container booking-grid">
-          <div class="booking-copy">
+          <div class="booking-copy fade-in">
             <p class="eyebrow">Book</p>
             <h2>Send a request and the shop will confirm your time.</h2>
             <p class="section-copy">
@@ -277,16 +335,18 @@
             </div>
           </div>
 
-          <form class="booking-form" id="booking-form">
+          <form class="booking-form fade-in" id="booking-form">
             <div class="form-message" id="booking-feedback" hidden></div>
-            <label>
-              Full name
-              <input type="text" name="clientName" required>
-            </label>
-            <label>
-              Phone number
-              <input type="tel" name="phone" required>
-            </label>
+            <div class="booking-primary-fields">
+              <label>
+                Full name
+                <input type="text" name="clientName" required>
+              </label>
+              <label>
+                Phone number
+                <input type="tel" name="phone" required>
+              </label>
+            </div>
             <label>
               Email
               <input type="email" name="email" required>
@@ -352,9 +412,7 @@
     </footer>
 
     <div class="mobile-cta-bar">
-      <a href="tel:01316294160">Call</a>
-      <a href="#booking">Book</a>
-      <a href="https://www.google.com/maps?q=place_id:ChIJk0ZapCTHh0gRIy6q_9C0GL4&place_id=ChIJk0ZapCTHh0gRIy6q_9C0GL4" target="_blank" rel="noreferrer">Directions</a>
+      <a href="#booking">Book Now</a>
     </div>
 
     <div class="lightbox" id="gallery-lightbox" aria-hidden="true">
@@ -369,7 +427,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="config.js?v=202604241625-dark-icon-mobile"></script>
-    <script src="app.js?v=202604241625-dark-icon-mobile"></script>
+    <script src="config.js?v=202604241915-premium-layout-finish"></script>
+    <script src="app.js?v=202604241915-premium-layout-finish"></script>
   </body>
 </html>
