@@ -488,7 +488,7 @@ body[data-theme="light"] .theme-toggle {
 .hero-visual img {
   min-height: 430px;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
 }
@@ -503,7 +503,7 @@ body[data-theme="light"] .theme-toggle {
   .hero-visual img {
     min-height: 240px;
     object-fit: cover;
-    object-position: top;
+    object-position: center;
   }
 }
 
