@@ -876,9 +876,18 @@ async function checkAuth() {
 
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
+        // Check if website is enabled
+        const { data: website } = await supabase.from('websites').select('enabled').eq('url', window.location.origin).single();
+        if (website && !website.enabled) {
+            document.body.innerHTML = '<div style="text-align: center; padding: 50px;"><h1>Website Disabled</h1><p>This website has been temporarily disabled by the administrator.</p></div>';
+            return;
+        }
+
         authPanel.hidden = true;
         adminApp.hidden = false;
         loadData();
+        loadNotifications();
+        loadProducts();
     } else {
         authPanel.hidden = false;
         adminApp.hidden = true;
@@ -1207,6 +1216,106 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+// --- SUPERADMIN FEATURES ---
+
+async function loadNotifications() {
+    const supabase = getSupabase();
+    const { data: website } = await supabase.from('websites').select('id').eq('url', window.location.origin).single();
+    if (!website) return;
+
+    const { data: notifications } = await supabase.from('notifications').select('*').eq('website_id', website.id).order('created_at', { ascending: false });
+
+    if (notifications && notifications.length > 0) {
+        const notificationBanner = document.createElement('div');
+        notificationBanner.id = 'notification-banner';
+        notificationBanner.style.cssText = `
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            cursor: pointer;
+        `;
+        notificationBanner.textContent = `You have ${notifications.length} new notification(s)`;
+        notificationBanner.addEventListener('click', () => showNotificationsModal(notifications));
+        document.body.appendChild(notificationBanner);
+    }
+}
+
+function showNotificationsModal(notifications) {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+
+    const content = document.createElement('div');
+    content.style.cssText = `
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow-y: auto;
+    `;
+
+    content.innerHTML = `
+        <h2>Notifications</h2>
+        ${notifications.map(n => `
+            <div style="border-bottom: 1px solid #eee; padding: 10px 0;">
+                <h3>${n.title}</h3>
+                <p>${n.message}</p>
+                <small>${new Date(n.created_at).toLocaleString()}</small>
+            </div>
+        `).join('')}
+        <button onclick="this.parentElement.parentElement.remove()" style="margin-top: 20px;">Close</button>
+    `;
+
+    modal.appendChild(content);
+    document.body.appendChild(modal);
+}
+
+async function loadProducts() {
+    const supabase = getSupabase();
+    const { data: products } = await supabase.from('products').select('*').order('created_at', { ascending: false });
+
+    if (products && products.length > 0) {
+        // Add products section to the admin dashboard
+        const productsSection = document.createElement('div');
+        productsSection.id = 'products-section';
+        productsSection.innerHTML = `
+            <h3>Add-on Products</h3>
+            <div style="display: grid; gap: 10px;">
+                ${products.map(p => `
+                    <div style="border: 1px solid #ddd; padding: 10px; border-radius: 4px;">
+                        <h4>${p.name}</h4>
+                        <p>£${p.price.toFixed(2)}</p>
+                        <p>${p.description}</p>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+
+        // Insert after the services section
+        const servicesSection = document.querySelector('[data-admin-section="services"]');
+        if (servicesSection) {
+            servicesSection.appendChild(productsSection);
+        }
+    }
+}
 
 // Export functions for HTML usage
 window.updateStatus = updateStatus;

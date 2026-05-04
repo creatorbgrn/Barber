@@ -312,6 +312,31 @@ function renderServices(settings = shopSettings) {
   setupReveal();
 }
 
+async function renderProducts() {
+  const productsGrid = document.getElementById("products-grid");
+  if (!productsGrid) return;
+
+  const supabase = getSupabase();
+  if (!supabase) return;
+
+  const { data: products } = await supabase.from('products').select('*').order('created_at', { ascending: false });
+
+  if (products && products.length > 0) {
+    productsGrid.innerHTML = products.map((product) => `
+      <article class="service-card reveal">
+        <div class="service-meta">
+          <strong>${escapeHtml(product.price ? '£' + product.price.toFixed(2) : '')}</strong>
+        </div>
+        <h3>${escapeHtml(product.name)}</h3>
+        <p>${escapeHtml(product.description || "")}</p>
+      </article>
+    `).join("");
+    setupReveal();
+  } else {
+    productsGrid.innerHTML = '';
+  }
+}
+
 function renderGallery(settings = shopSettings) {
   const grid = document.getElementById("gallery-grid");
   if (!grid) {
@@ -407,6 +432,7 @@ function applyShopSettings(settings) {
   renderServices(shopSettings);
   renderGallery(shopSettings);
   renderTimeOptions(shopSettings);
+  renderProducts();
 }
 
 async function loadShopSettings() {

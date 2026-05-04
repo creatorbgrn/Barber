@@ -10,6 +10,8 @@ create table if not exists public.bookings (
   preferred_time time not null,
   notes text not null default '',
   status text not null default 'new' check (status in ('new', 'contacted', 'confirmed', 'completed', 'cancelled')),
+  revenue numeric(10,2) default 0,
+  website_id uuid,
   created_at timestamptz not null default timezone('utc', now())
 );
 
@@ -27,6 +29,30 @@ create table if not exists public.site_settings (
   updated_at timestamptz not null default timezone('utc', now())
 );
 
+create table if not exists public.websites (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  url text not null,
+  enabled boolean not null default true,
+  created_at timestamptz not null default timezone('utc', now())
+);
+
+create table if not exists public.notifications (
+  id uuid primary key default gen_random_uuid(),
+  website_id uuid references public.websites(id) on delete cascade,
+  title text not null,
+  message text not null,
+  created_at timestamptz not null default timezone('utc', now())
+);
+
+create table if not exists public.products (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  price numeric(10,2) not null,
+  description text not null,
+  created_at timestamptz not null default timezone('utc', now())
+);
+
 create or replace function public.is_admin()
 returns boolean
 language sql
@@ -38,6 +64,24 @@ as $$
     select 1
     from public.admin_users
     where user_id = auth.uid()
+  );
+$$;
+
+create or replace function public.is_superadmin()
+returns boolean
+language sql
+stable
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1
+    from public.admin_users
+    where user_id = auth.uid()
+    and user_id in (
+      select user_id from public.admin_users
+      where user_id = 'superadmin-user-id' -- Replace with actual superadmin user ID
+    )
   );
 $$;
 
@@ -64,6 +108,9 @@ grant execute on function public.get_slot_booking_count(date, time) to anon, aut
 alter table public.bookings enable row level security;
 alter table public.admin_users enable row level security;
 alter table public.site_settings enable row level security;
+alter table public.websites enable row level security;
+alter table public.notifications enable row level security;
+alter table public.products enable row level security;
 
 drop policy if exists "Public can insert bookings" on public.bookings;
 create policy "Public can insert bookings"
@@ -108,6 +155,34 @@ create policy "Admins can manage site settings"
   to authenticated
   using (public.is_admin())
   with check (public.is_admin());
+
+drop policy if exists "Superadmins can manage websites" on public.websites;
+create policy "Superadmins can manage websites"
+  on public.websites
+  for all
+  to authenticated
+  using (public.is_superadmin());
+
+drop policy if exists "Superadmins can manage notifications" on public.notifications;
+create policy "Superadmins can manage notifications"
+  on public.notifications
+  for all
+  to authenticated
+  using (public.is_superadmin());
+
+drop policy if exists "Superadmins can manage products" on public.products;
+create policy "Superadmins can manage products"
+  on public.products
+  for all
+  to authenticated
+  using (public.is_superadmin());
+
+drop policy if exists "Public can read products" on public.products;
+create policy "Public can read products"
+  on public.products
+  for select
+  to anon, authenticated
+  using (true);
 
 insert into public.site_settings (key, settings)
 values ('main', '{}'::jsonb)

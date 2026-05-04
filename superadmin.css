@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperAdmin Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="superadmin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="superadmin-body">
+    <!-- LOGIN SCREEN -->
+    <div class="login-screen" id="superadmin-auth-panel">
+      <div class="login-card">
+        <h1>SuperAdmin Login</h1>
+        <form id="superadmin-login-form">
+          <input type="email" id="superadmin-email" placeholder="Email" required>
+          <input type="password" id="superadmin-password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard" id="superadmin-dashboard" hidden>
+      <header class="header">
+        <h1>SuperAdmin Platform</h1>
+        <button id="logout-btn">Logout</button>
+      </header>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-section="overview">Overview</button>
+        <button class="nav-btn" data-section="websites">Websites</button>
+        <button class="nav-btn" data-section="analytics">Analytics</button>
+        <button class="nav-btn" data-section="notifications">Notifications</button>
+        <button class="nav-btn" data-section="products">Products</button>
+      </nav>
+
+      <main class="main">
+        <!-- OVERVIEW -->
+        <section class="section active" id="overview-section">
+          <h2>Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Total Websites</h3>
+              <p id="total-websites">0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Bookings</h3>
+              <p id="total-bookings">0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Revenue</h3>
+              <p id="total-revenue">£0</p>
+            </div>
+            <div class="stat-card">
+              <h3>Active Websites</h3>
+              <p id="active-websites">0</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- WEBSITES -->
+        <section class="section" id="websites-section">
+          <h2>Websites</h2>
+          <div class="websites-list" id="websites-list"></div>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section class="section" id="analytics-section">
+          <h2>Analytics</h2>
+          <div class="filters">
+            <select id="analytics-website">
+              <option value="all">All Websites</option>
+            </select>
+            <input type="date" id="analytics-start">
+            <input type="date" id="analytics-end">
+            <button id="analytics-filter">Filter</button>
+          </div>
+          <div class="charts">
+            <canvas id="bookings-chart"></canvas>
+            <canvas id="revenue-chart"></canvas>
+          </div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section class="section" id="notifications-section">
+          <h2>Send Notification</h2>
+          <form id="notification-form">
+            <select id="notification-website">
+              <option value="all">All Websites</option>
+            </select>
+            <input type="text" id="notification-title" placeholder="Title" required>
+            <textarea id="notification-message" placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+          </form>
+          <div class="notifications-list" id="notifications-list"></div>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="section" id="products-section">
+          <h2>Add-on Products</h2>
+          <form id="product-form">
+            <input type="text" id="product-name" placeholder="Product Name" required>
+            <input type="number" id="product-price" placeholder="Price" step="0.01" required>
+            <textarea id="product-description" placeholder="Description"></textarea>
+            <button type="submit">Add Product</button>
+          </form>
+          <div class="products-list" id="products-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="superadmin.js"></script>
+  </body>
+</html></content>
+<parameter name="filePath">/Users/bishalgaire/Desktop/Edinburgh Barber/superadmin.html
