@@ -79,8 +79,10 @@ as $$
     from public.admin_users
     where user_id = auth.uid()
     and user_id in (
-      select user_id from public.admin_users
-      where user_id = 'superadmin-user-id' -- Replace with actual superadmin user ID
+      select au.user_id
+      from public.admin_users au
+      join auth.users u on au.user_id = u.id
+      where u.email like '%superadmin%' or u.email like '%admin%'
     )
   );
 $$;

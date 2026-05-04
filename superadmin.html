@@ -3,21 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SuperAdmin - Edinburgh Barber</title>
+  <title>SuperAdmin - Edinburgh Barber Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="superadmin.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="superadmin-body">
+<body>
   <!-- Login Screen -->
   <div id="superadmin-auth-panel" class="login-screen">
     <div class="login-card">
-      <h1>SuperAdmin Login</h1>
-      <form id="superadmin-login-form">
-        <input type="email" id="superadmin-email" placeholder="Email" required>
-        <input type="password" id="superadmin-password" placeholder="Password" required>
-        <button type="submit">Login</button>
+      <h1>SuperAdmin</h1>
+      <p class="subtitle">Multi-tenant barber shop management platform</p>
+      <form id="superadmin-login-form" class="login-form">
+        <div class="form-group">
+          <label for="superadmin-email">Email Address</label>
+          <input type="email" id="superadmin-email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="superadmin-password">Password</label>
+          <input type="password" id="superadmin-password" placeholder="Enter your password" required>
+        </div>
+        <button type="submit" class="login-btn" id="superadmin-login-btn">
+          <span>Sign In</span>
+        </button>
       </form>
     </div>
   </div>
@@ -25,102 +38,275 @@
   <!-- Dashboard -->
   <div id="superadmin-dashboard" hidden>
     <header class="header">
-      <h1>SuperAdmin Dashboard</h1>
-      <button id="logout-btn">Logout</button>
+      <h1>SuperAdmin Platform</h1>
+      <button id="logout-btn" class="logout-btn">Logout</button>
     </header>
 
-    <nav class="nav">
-      <button class="nav-btn active" data-section="overview">Overview</button>
-      <button class="nav-btn" data-section="websites">Websites</button>
-      <button class="nav-btn" data-section="analytics">Analytics</button>
-      <button class="nav-btn" data-section="notifications">Notifications</button>
-      <button class="nav-btn" data-section="products">Products</button>
-    </nav>
+    <div class="main-content">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="nav-section">
+          <div class="nav-section-title">Dashboard</div>
+          <button class="nav-item active" data-section="overview">
+            <i class="fas fa-chart-line"></i>
+            Overview
+          </button>
+        </div>
 
-    <main class="main">
-      <!-- Overview Section -->
-      <section id="overview-section" class="section active">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <h3>Total Websites</h3>
-            <p id="total-websites">0</p>
+        <div class="nav-section">
+          <div class="nav-section-title">Management</div>
+          <button class="nav-item" data-section="websites">
+            <i class="fas fa-globe"></i>
+            Websites
+          </button>
+          <button class="nav-item" data-section="analytics">
+            <i class="fas fa-chart-bar"></i>
+            Analytics
+          </button>
+          <button class="nav-item" data-section="notifications">
+            <i class="fas fa-bell"></i>
+            Notifications
+          </button>
+          <button class="nav-item" data-section="products">
+            <i class="fas fa-box"></i>
+            Products
+          </button>
+        </div>
+      </nav>
+
+      <!-- Content Area -->
+      <main class="content">
+        <!-- Overview Section -->
+        <section id="overview-section" class="section active">
+          <div class="section-header">
+            <h2 class="section-title">Dashboard Overview</h2>
+            <p class="section-subtitle">Monitor your barber shop network performance</p>
           </div>
-          <div class="stat-card">
-            <h3>Active Websites</h3>
-            <p id="active-websites">0</p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon">
+                  <i class="fas fa-globe"></i>
+                </div>
+                <span class="stat-title">Total Websites</span>
+              </div>
+              <div class="stat-value" id="total-websites">0</div>
+              <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                Active network
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <span class="stat-title">Active Websites</span>
+              </div>
+              <div class="stat-value" id="active-websites">0</div>
+              <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                Online now
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <span class="stat-title">Total Bookings</span>
+              </div>
+              <div class="stat-value" id="total-bookings">0</div>
+              <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                This month
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <div class="stat-icon">
+                  <i class="fas fa-pound-sign"></i>
+                </div>
+                <span class="stat-title">Total Revenue</span>
+              </div>
+              <div class="stat-value" id="total-revenue">£0.00</div>
+              <div class="stat-change">
+                <i class="fas fa-arrow-up"></i>
+                Monthly growth
+              </div>
+            </div>
           </div>
-          <div class="stat-card">
-            <h3>Total Bookings</h3>
-            <p id="total-bookings">0</p>
+        </section>
+
+        <!-- Websites Section -->
+        <section id="websites-section" class="section">
+          <div class="section-header">
+            <h2 class="section-title">Website Management</h2>
+            <p class="section-subtitle">Control and monitor all barber shop websites</p>
           </div>
-          <div class="stat-card">
-            <h3>Total Revenue</h3>
-            <p id="total-revenue">£0.00</p>
+
+          <div class="data-table">
+            <div class="table-header">
+              <h3 class="table-title">Managed Websites</h3>
+              <div class="filters">
+                <div class="filter-group">
+                  <label class="filter-label">Search</label>
+                  <input type="text" class="filter-input" id="website-search" placeholder="Search websites...">
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label">Status</label>
+                  <select class="filter-input" id="website-status">
+                    <option value="all">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="table-body">
+              <div id="websites-list" class="table-body">
+                <!-- Websites will be loaded here -->
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Websites Section -->
-      <section id="websites-section" class="section">
-        <h2>Website Management</h2>
-        <div id="websites-list" class="websites-list">
-          <!-- Websites will be loaded here -->
-        </div>
-      </section>
+        <!-- Analytics Section -->
+        <section id="analytics-section" class="section">
+          <div class="section-header">
+            <h2 class="section-title">Analytics & Reports</h2>
+            <p class="section-subtitle">Detailed insights across all websites</p>
+          </div>
 
-      <!-- Analytics Section -->
-      <section id="analytics-section" class="section">
-        <h2>Analytics</h2>
-        <div class="filters">
-          <select id="analytics-website">
-            <option value="all">All Websites</option>
-            <!-- Websites will be loaded here -->
-          </select>
-          <input type="date" id="analytics-start">
-          <input type="date" id="analytics-end">
-          <button onclick="renderAnalytics()">Filter</button>
-        </div>
-        <div class="charts">
-          <canvas id="bookings-chart"></canvas>
-          <canvas id="revenue-chart"></canvas>
-        </div>
-      </section>
+          <div class="filters" style="margin-bottom: 2rem;">
+            <div class="filter-group">
+              <label class="filter-label">Website</label>
+              <select class="filter-input" id="analytics-website">
+                <option value="all">All Websites</option>
+                <!-- Websites will be loaded here -->
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">From Date</label>
+              <input type="date" class="filter-input" id="analytics-start">
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">To Date</label>
+              <input type="date" class="filter-input" id="analytics-end">
+            </div>
+            <button class="action-btn primary" onclick="renderAnalytics()">
+              <i class="fas fa-sync"></i>
+              Update Charts
+            </button>
+          </div>
 
-      <!-- Notifications Section -->
-      <section id="notifications-section" class="section">
-        <h2>Send Notification</h2>
-        <form id="notification-form">
-          <select id="notification-website">
-            <option value="all">All Websites</option>
-            <!-- Websites will be loaded here -->
-          </select>
-          <input type="text" id="notification-title" placeholder="Notification Title" required>
-          <textarea id="notification-message" placeholder="Notification Message" required></textarea>
-          <button type="submit">Send Notification</button>
-        </form>
+          <div class="chart-container">
+            <h3 class="chart-title">Performance Analytics</h3>
+            <div class="chart-grid">
+              <div class="chart-wrapper">
+                <canvas id="bookings-chart"></canvas>
+              </div>
+              <div class="chart-wrapper">
+                <canvas id="revenue-chart"></canvas>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <h2>Recent Notifications</h2>
-        <div id="notifications-list" class="notifications-list">
-          <!-- Notifications will be loaded here -->
-        </div>
-      </section>
+        <!-- Notifications Section -->
+        <section id="notifications-section" class="section">
+          <div class="section-header">
+            <h2 class="section-title">Notifications</h2>
+            <p class="section-subtitle">Send messages to websites and customers</p>
+          </div>
 
-      <!-- Products Section -->
-      <section id="products-section" class="section">
-        <h2>Add Product</h2>
-        <form id="product-form">
-          <input type="text" id="product-name" placeholder="Product Name" required>
-          <input type="number" id="product-price" step="0.01" placeholder="Price" required>
-          <textarea id="product-description" placeholder="Description" required></textarea>
-          <button type="submit">Add Product</button>
-        </form>
+          <div class="form-card">
+            <h3 class="form-title">Send Notification</h3>
+            <form id="notification-form" class="form-grid">
+              <div class="form-row">
+                <label class="form-label">Target Website</label>
+                <select class="form-input" id="notification-website">
+                  <option value="all">All Websites</option>
+                  <!-- Websites will be loaded here -->
+                </select>
+              </div>
+              <div class="form-row">
+                <label class="form-label">Notification Title</label>
+                <input type="text" class="form-input" id="notification-title" placeholder="Enter notification title" required>
+              </div>
+              <div class="form-row" style="grid-column: 1 / -1;">
+                <label class="form-label">Message</label>
+                <textarea class="form-input form-textarea" id="notification-message" placeholder="Enter your message..." required></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="action-btn primary">
+                  <i class="fas fa-paper-plane"></i>
+                  Send Notification
+                </button>
+              </div>
+            </form>
+          </div>
 
-        <h2>Products</h2>
-        <div id="products-list" class="products-list">
-          <!-- Products will be loaded here -->
-        </div>
-      </section>
-    </main>
+          <div class="data-table">
+            <div class="table-header">
+              <h3 class="table-title">Recent Notifications</h3>
+            </div>
+            <div class="table-body">
+              <div id="notifications-list">
+                <!-- Notifications will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products-section" class="section">
+          <div class="section-header">
+            <h2 class="section-title">Product Management</h2>
+            <p class="section-subtitle">Manage add-on products across all websites</p>
+          </div>
+
+          <div class="form-card">
+            <h3 class="form-title">Add New Product</h3>
+            <form id="product-form" class="form-grid">
+              <div class="form-row">
+                <label class="form-label">Product Name</label>
+                <input type="text" class="form-input" id="product-name" placeholder="Enter product name" required>
+              </div>
+              <div class="form-row">
+                <label class="form-label">Price (£)</label>
+                <input type="number" class="form-input" id="product-price" step="0.01" placeholder="0.00" required>
+              </div>
+              <div class="form-row" style="grid-column: 1 / -1;">
+                <label class="form-label">Description</label>
+                <textarea class="form-input form-textarea" id="product-description" placeholder="Describe the product..." required></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="action-btn primary">
+                  <i class="fas fa-plus"></i>
+                  Add Product
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="data-table">
+            <div class="table-header">
+              <h3 class="table-title">Available Products</h3>
+            </div>
+            <div class="table-body">
+              <div id="products-list">
+                <!-- Products will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
   </div>
 
   <script src="superadmin.js"></script>
