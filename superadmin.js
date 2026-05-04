@@ -2,6 +2,8 @@
 const config = window.CREWE_CUT_CONFIG || {};
 let supabaseClient = null;
 let currentUser = null;
+let bookingsChart = null;
+let revenueChart = null;
 
 // Initialize theme
 const savedTheme = localStorage.getItem('superadmin-theme') || 'dark';
@@ -339,7 +341,12 @@ async function renderAnalytics() {
     // Bookings Chart
     const bookingsCtx = document.getElementById('bookings-chart');
     if (bookingsCtx) {
-      new Chart(bookingsCtx, {
+      // Destroy old chart if it exists
+      if (bookingsChart) {
+        bookingsChart.destroy();
+      }
+      
+      bookingsChart = new Chart(bookingsCtx, {
         type: 'line',
         data: {
           labels: months.map(m => {
@@ -379,7 +386,12 @@ async function renderAnalytics() {
     // Revenue Chart
     const revenueCtx = document.getElementById('revenue-chart');
     if (revenueCtx) {
-      new Chart(revenueCtx, {
+      // Destroy old chart if it exists
+      if (revenueChart) {
+        revenueChart.destroy();
+      }
+      
+      revenueChart = new Chart(revenueCtx, {
         type: 'bar',
         data: {
           labels: months.map(m => {
